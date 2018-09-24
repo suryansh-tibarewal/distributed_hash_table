@@ -26,7 +26,8 @@ def del_dht(key_id, partition_id):
             if status:
                 return True
             else:
-                return "Key doesn't exist"
+                # key does not exist
+                return False
     return False
 
 def redistribute_keys_join(partition_redistribute_from, partition_redistribute_to):
@@ -89,3 +90,4 @@ def leave(partition_id = None):
     del partition_ring[partition_id]
     # sync_partition_ring_client()
     del partition_list[bisect.bisect_left(partition_list, partition_id)]
+    return True
