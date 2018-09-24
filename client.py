@@ -4,6 +4,8 @@ from server import get_dht, put_dht, del_dht
 from global_variables import *
 
 def get_partition_id(key_id):
+    if not partition_ring:
+        raise NoServerError("Start a server, before using the client")
     current_partition_id = random.choice(partition_ring.keys())
     while ring_distance(current_partition_id, key_id) > \
           ring_distance(partition_ring[current_partition_id]['next'], key_id):
@@ -30,3 +32,8 @@ def delete(key_name):
     partition_id = get_partition_id(key_id)
     status = del_dht(key_id, partition_id)
     return status
+
+class NoServerError(Exception):
+   """Class for handling exception when no server exists"""
+   # this can than be used to decide when to spin up a server
+   pass

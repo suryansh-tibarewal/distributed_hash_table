@@ -75,6 +75,7 @@ def leave(partition_id = None):
     if not partition_id:
         partition_id = random.choice(partition_list)
     if partition_id not in partition_list:
+        print "No such partition id exists ", partition_id
         return False
     if len(partition_list) == 1:
         print "No servers left"
