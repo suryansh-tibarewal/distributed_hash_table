@@ -26,4 +26,4 @@ To test the API's from client
 	# import client
 	# client.get(key_name)
 	# client.put(key_name, value)
-	# client.del(key_name)
+	# client.delete(key_name)
